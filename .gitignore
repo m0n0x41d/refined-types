@@ -1,0 +1,44 @@
+# Build artifacts
+build/
+dist/
+*.egg-info/
+*.egg
+wheels/
+.eggs/
+
+# Python bytecode
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+
+# Environments
+.venv/
+venv/
+env/
+ENV/
+.env
+
+# Type checkers / linters / test caches
+.mypy_cache/
+.pyright/
+.ruff_cache/
+.pytest_cache/
+.tox/
+.coverage
+.coverage.*
+coverage.xml
+htmlcov/
+
+# IDEs
+.idea/
+.vscode/
+*.swp
+*.swo
+
+# OS
+.DS_Store
+Thumbs.db
+
+# uv
+uv.lock
