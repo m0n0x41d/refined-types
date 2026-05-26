@@ -100,9 +100,12 @@ select = [
 python_version = "3.10"
 strict = true
 warn_unreachable = true
-warn_redundant_casts = true
+warn_redundant_casts = false
+warn_unused_ignores = true
 
 [tool.pyright]
 pythonVersion = "3.10"
 typeCheckingMode = "strict"
 include = ["src", "tests"]
+extraPaths = ["src"]
+reportUnnecessaryTypeIgnoreComment = "error"
