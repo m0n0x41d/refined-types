@@ -7,6 +7,18 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.1.0a2] — 2026-05-26
+
+Docs alpha. No code changes; this release exists to ship an honest
+README to PyPI's project page and to record the spec rebaseline.
+
+### Fixed
+- README quickstart referenced an API that was never shipped (`Annotated[T, Refined[P]]`, `.unwrap()`, `NonEmpty`, `Range[0, 150]`). Replaced with code that matches the actual 0.1.0a1+ API surface and demonstrates the load-bearing type-checker rejection of raw values where refinements are expected.
+- Comparison matrix with phantom-types now distinguishes shipped features from planned ones explicitly.
+
+### Changed
+- Spec section `TS.environment-change.002` rebaselined: scoped to `parse` + `pydantic` for 0.1.0a*, with the Hypothesis adapter marked roadmap. `valid_until` shortened so refresh ceremony fires if the Hypothesis adapter slips.
+
 ## [0.1.0a1] — 2026-05-26
 
 First alpha of the 0.1.0 line. Pre-release; API surface considered
@@ -37,6 +49,7 @@ subject to change up to 0.1.0 stable.
 - Project scaffolding, README, MIT license.
 - Public placeholder `__version__`.
 
-[Unreleased]: https://github.com/m0n0x41d/refined-types/compare/v0.1.0a1...HEAD
+[Unreleased]: https://github.com/m0n0x41d/refined-types/compare/v0.1.0a2...HEAD
+[0.1.0a2]: https://github.com/m0n0x41d/refined-types/releases/tag/v0.1.0a2
 [0.1.0a1]: https://github.com/m0n0x41d/refined-types/releases/tag/v0.1.0a1
 [0.0.1]: https://github.com/m0n0x41d/refined-types/releases/tag/v0.0.1

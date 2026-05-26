@@ -4,7 +4,7 @@ First-class refinement types for Python — with native Pydantic v2
 integration. A practical projection of Σ-types into a language without
 dependent types.
 
-> Status: **0.1.0a1 — first alpha.** Core, predicates, and the Pydantic v2
+> Status: **0.1.0a2 — alpha.** Core, predicates, and the Pydantic v2
 > adapter are live; Hypothesis strategy registration is a stub and lands
 > in a later alpha. Not for production yet.
 
@@ -98,7 +98,7 @@ that import the core plus their framework and nothing else. A static
 test under `tests/test_core_isolation.py` enforces that `_core/` never
 imports pydantic, hypothesis, attrs, or msgspec.
 
-## What ships in 0.1.0a1
+## What ships in 0.1.0a2
 
 - **Core**: `Result[T, E]` (Ok/Err discriminated union with `match` / `then` /
   `map` / `map_err`), `Refined[T, P]` phantom marker, `ParseError`.
@@ -120,7 +120,7 @@ imports pydantic, hypothesis, attrs, or msgspec.
 incumbent and a good library. We differ on axes that matter for
 Pydantic-v2-native, type-checker-strict workflows:
 
-| Aspect                          | phantom-types         | refined-types (0.1.0a1)            |
+| Aspect                          | phantom-types         | refined-types (0.1.0a2)            |
 |---------------------------------|-----------------------|------------------------------------|
 | DSL                             | inheritance           | `Refined[T, P]` generic            |
 | Core dependencies               | typeguard, numerary   | typing-extensions only             |
@@ -131,7 +131,7 @@ Pydantic-v2-native, type-checker-strict workflows:
 | Refined collections safe API    | absent                | planned (0.2.0)                    |
 | Σ-type framing                  | absent                | first-class in docs                |
 
-Honest scope: anything marked "planned" is not in 0.1.0a1.
+Honest scope: anything marked "planned" is not in 0.1.0a2.
 
 ## Σ-type framing — one paragraph
 
@@ -150,7 +150,7 @@ discussion.
 
 ```bash
 # Core only — no pydantic, no hypothesis
-pip install "refined-types==0.1.0a1"
+pip install "refined-types==0.1.0a2"
 
 # With Pydantic v2 integration
 pip install "refined-types[pydantic]==0.1.0a1"
@@ -166,8 +166,9 @@ Minimum Python: **3.10**.
 
 ## Roadmap
 
-- **0.1.0a1** — first alpha (you are here): core, 12 predicates, pydantic v2 adapter, type-check guards
-- **0.1.0 (stable)** — README example verified, spec carriers closed, real Hypothesis strategy or explicit defer
+- **0.1.0a1** — first alpha: core, 12 predicates, pydantic v2 adapter, type-check guards
+- **0.1.0a2** — docs alpha (you are here): honest README quickstart, type-checker rejection example, spec carrier rebaselined to drop the hypothesis overclaim
+- **0.1.0 (stable)** — real Hypothesis strategy registration or explicit defer to 0.3.0, accumulated real-world feedback applied
 - **0.2.0** — predicate algebra (`&`, `|`, `~`), refined collections with safe API (`NonEmptyList.head() -> T`)
 - **0.3.0** — Hypothesis strategy registration (if not in 0.1.0), FastAPI recipes, `attrs`/`msgspec` integration examples
 - **1.0.0** — stable API, full docs site

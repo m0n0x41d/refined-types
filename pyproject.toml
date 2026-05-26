@@ -4,7 +4,7 @@ build-backend = "hatchling.build"
 
 [project]
 name = "refined-types"
-version = "0.1.0a1"
+version = "0.1.0a2"
 description = "Annotated-based refinement types for Python — with first-class Pydantic v2 integration. A practical projection of Σ-types into a language without dependent types."
 readme = "README.md"
 license = { file = "LICENSE" }
