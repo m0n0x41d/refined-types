@@ -44,7 +44,7 @@ from refined_types._core.predicates import (
 from refined_types._core.refined import ParseError, Refined
 from refined_types._core.result import Err, Ok, Result
 
-__version__ = "0.0.1"
+__version__ = "0.1.0a1"
 
 __all__ = [
     "Email",
