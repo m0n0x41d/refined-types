@@ -20,7 +20,16 @@ from pydantic import BaseModel, ValidationError
 from typing_extensions import assert_type
 
 import refined_types.pydantic  # noqa: F401  — side-effect: install hooks
-from refined_types import NonEmptyString, Positive, Refined
+from refined_types import (
+    Email,
+    MaxLength,
+    NonEmptyCollection,
+    NonEmptyString,
+    NonNegative,
+    Positive,
+    Refined,
+    Unique,
+)
 
 
 class User(BaseModel):
@@ -71,6 +80,38 @@ def test_json_schema_carries_predicate_constraints() -> None:
     props = schema["properties"]
     assert props["age"].get("exclusiveMinimum") == 0
     assert props["name"].get("minLength") == 1
+
+
+def test_json_schema_covers_five_predicate_categories() -> None:
+    """SPEC §11 0.1.0 DoD: JSON Schema generation works for 5+ sample predicates.
+
+    Covers all three predicate categories (numeric, string, collection) and
+    the parameterized predicate family via explicit subclass (the
+    type-expression form; ``MaxLength.of(n)`` is the runtime form and
+    cannot live in a type slot — that is the documented phantom-typing
+    consequence). Each predicate must surface its
+    ``json_schema_constraint()`` in the generated schema."""
+
+    class BioMax(MaxLength):
+        bound = 64
+
+    class Profile(BaseModel):
+        age: Refined[int, Positive]
+        score: Refined[int, NonNegative]
+        nickname: Refined[str, NonEmptyString]
+        bio: Refined[str, BioMax]
+        contact: Refined[str, Email]
+        tags: Refined[list[str], NonEmptyCollection]
+        labels: Refined[list[str], Unique]
+
+    props = Profile.model_json_schema()["properties"]
+    assert props["age"].get("exclusiveMinimum") == 0
+    assert props["score"].get("minimum") == 0
+    assert props["nickname"].get("minLength") == 1
+    assert props["bio"].get("maxLength") == 64
+    assert props["contact"].get("format") == "email"
+    assert props["tags"].get("minItems") == 1
+    assert props["labels"].get("uniqueItems") is True
 
 
 def test_model_dump_returns_underlying_value() -> None:

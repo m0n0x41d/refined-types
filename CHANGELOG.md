@@ -7,6 +7,30 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [0.1.0] — 2026-05-29
+
+First stable release of the 0.1.0 line. All `SPEC.md §11` 0.1.0
+definition-of-done items now have shipped evidence in tests. API
+surface is the same as `0.1.0a2`; this release records the DoD
+verdict and freezes the alpha → stable transition.
+
+### Added
+- `tests/test_pydantic_e2e.py::test_json_schema_covers_five_predicate_categories`
+  — JSON Schema generation evidence across 7 predicates from all three
+  categories (`Positive`, `NonNegative`, `NonEmptyString`, custom
+  `MaxLength` subclass, `Email`, `NonEmptyCollection`, `Unique`). Closes
+  the last DoD gap from `SPEC.md §11`.
+
+### Documentation
+- Test docstring records the documented phantom-typing consequence:
+  `MaxLength.of(n)` is the runtime parameterization form and cannot live
+  in a type-expression slot; use an explicit subclass with `bound = n`
+  there.
+
+### Scope reminder
+- Hypothesis adapter remains a stub raising `ImportError`. Full strategy
+  registration ships in **0.3.0** per `SPEC.md §11` roadmap, not 0.1.0.
+
 ## [0.1.0a2] — 2026-05-26
 
 Docs alpha. No code changes; this release exists to ship an honest
@@ -49,7 +73,8 @@ subject to change up to 0.1.0 stable.
 - Project scaffolding, README, MIT license.
 - Public placeholder `__version__`.
 
-[Unreleased]: https://github.com/m0n0x41d/refined-types/compare/v0.1.0a2...HEAD
+[Unreleased]: https://github.com/m0n0x41d/refined-types/compare/v0.1.0...HEAD
+[0.1.0]: https://github.com/m0n0x41d/refined-types/releases/tag/v0.1.0
 [0.1.0a2]: https://github.com/m0n0x41d/refined-types/releases/tag/v0.1.0a2
 [0.1.0a1]: https://github.com/m0n0x41d/refined-types/releases/tag/v0.1.0a1
 [0.0.1]: https://github.com/m0n0x41d/refined-types/releases/tag/v0.0.1
